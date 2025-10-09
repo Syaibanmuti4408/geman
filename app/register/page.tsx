@@ -24,7 +24,6 @@ export default async function RegisterPage() {
                                 className="h-24 w-auto max-w-[60%] object-contain"
                             />
                         </div>
-                        <CardTitle className="text-center">Register Admin</CardTitle>
                         <CardDescription className="text-center">Create the first admin account</CardDescription>
                     </CardHeader>
                     <CardContent>
@@ -37,7 +36,7 @@ export default async function RegisterPage() {
                                 <Label htmlFor="password">Password</Label>
                                 <Input id="password" name="password" type="password" required minLength={8} placeholder="Enter password" />
                             </div>
-                            <Button type="submit" className="w-full">Register</Button>
+                            <Button type="submit" className="w-full">Create Account</Button>
                         </form>
                     </CardContent>
                 </Card>
