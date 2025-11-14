@@ -1,5 +1,5 @@
-import React from 'react';
-import { cn } from '../lib/utils';
+import React from "react";
+import { cn } from "../lib/utils";
 
 export interface LogoProps extends React.SVGProps<SVGSVGElement> {
   size?: number | string;
@@ -8,7 +8,7 @@ export interface LogoProps extends React.SVGProps<SVGSVGElement> {
 
 export const Logo: React.FC<LogoProps> = ({
   size = 32,
-  className = '',
+  className = "",
   ...props
 }) => {
   return (
@@ -18,7 +18,10 @@ export const Logo: React.FC<LogoProps> = ({
       viewBox="0 0 680 680"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className={cn("select-none transition-colors duration-300 ease-in-out", className)}
+      className={cn(
+        "select-none transition-colors duration-300 ease-in-out",
+        className,
+      )}
       role="img"
       aria-label="Logo"
       {...props}

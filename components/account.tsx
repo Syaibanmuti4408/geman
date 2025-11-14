@@ -2,14 +2,14 @@ import Link from "@/components/custom-link";
 import { Root, Trigger, Content, Item } from "@radix-ui/react-dropdown-menu";
 import { LuUser } from "react-icons/lu";
 import { IoSettingsOutline } from "react-icons/io5";
-import { FileText, ExternalLink } from 'lucide-react';
-import { createAvatar } from '@dicebear/core';
-import { lorelei } from '@dicebear/collection';
+import { FileText, ExternalLink } from "lucide-react";
+import { createAvatar } from "@dicebear/core";
+import { lorelei } from "@dicebear/collection";
 import { getServerSession } from "@/lib/auth";
 import { getSessionCookie } from "better-auth/cookies";
 import { headers } from "next/headers";
-import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
-import LogoutButton from "./logout-button"; // 👈 新增
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+import LogoutButton from "./logout-button"; // Added
 
 export default async function Account() {
   const hasSessionCookie = getSessionCookie(new Headers(await headers()));
@@ -17,7 +17,7 @@ export default async function Account() {
 
   const avatar = createAvatar(lorelei, {
     size: 128,
-    seed: "Nolan"
+    seed: "Nolan",
   }).toDataUri();
 
   return (
@@ -55,7 +55,7 @@ export default async function Account() {
               href="/account"
               className="group flex w-full items-center rounded px-3 py-2 space-x-2 data-highlighted:bg-gray-100 data-highlighted:text-black outline-none"
             >
-              <LuUser className="size-4" />
+              <LuUser className="size-5" />
               <span>Account</span>
             </Link>
           </Item>
@@ -64,7 +64,7 @@ export default async function Account() {
               href="/settings"
               className="group flex w-full items-center rounded px-3 py-2 space-x-2 data-highlighted:bg-gray-100 data-highlighted:text-black outline-none"
             >
-              <IoSettingsOutline className="size-4" />
+              <IoSettingsOutline className="size-5" />
               <span>Settings</span>
             </Link>
           </Item>
@@ -77,10 +77,10 @@ export default async function Account() {
               className="group flex w-full items-center justify-between rounded px-3 py-2 space-x-2 data-highlighted:bg-gray-100 data-highlighted:text-black outline-none"
             >
               <div className="flex items-center space-x-2">
-                <FileText className="size-4" />
+                <FileText className="size-5" />
                 <span>Documentation</span>
               </div>
-              <ExternalLink className="size-4" />
+              <ExternalLink className="size-5" />
             </Link>
           </Item>
         </div>

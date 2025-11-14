@@ -1,6 +1,6 @@
 import { defineConfig } from "drizzle-kit";
 
-const url = process.env.DATABASE_URL || "file:./db.sqlite";
+const url = process.env.TURSO_DATABASE_URL || "file:./db.sqlite";
 const isTurso = /^libsql:|^https?:\/\//.test(url);
 
 export default defineConfig({

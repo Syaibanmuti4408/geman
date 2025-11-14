@@ -19,22 +19,13 @@ export const Footer: NextPage = () => {
             {`. All the rights reserved.`}
           </p>
           <ul className="flex items-center space-x-2">
-            <Link
-              href={"https://x.com/shenlu89"}
-              title="X"
-            >
+            <Link href={"https://x.com/shenlu89"} title="X">
               <FaXTwitter className="size-6" />
             </Link>
-            <Link
-              href={"https://discord.gg/aeNbhwng4E"}
-              title="Discord"
-            >
+            <Link href={"https://discord.gg/aeNbhwng4E"} title="Discord">
               <FaDiscord className="size-6" />
             </Link>
-            <Link
-              href={"https://github.com/shenlu89/geman"}
-              title="GitHub"
-            >
+            <Link href={"https://github.com/shenlu89/geman"} title="GitHub">
               <FaGithub className="size-6" />
             </Link>
           </ul>

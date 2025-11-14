@@ -22,10 +22,12 @@ export default async function middleware(req: NextRequest) {
   // Unauthenticated users visiting protected pages → redirect to login
   if (
     !sessionCookie &&
-    authRequiredPaths.some((p) => pathname === p || pathname.startsWith(p + "/"))
+    authRequiredPaths.some(
+      (p) => pathname === p || pathname.startsWith(p + "/"),
+    )
   ) {
     return NextResponse.redirect(
-      new URL(`/login?next=${pathname}${search}`, req.url)
+      new URL(`/login?next=${pathname}${search}`, req.url),
     );
   }
 

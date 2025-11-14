@@ -8,20 +8,20 @@ import { headers } from "next/headers";
 
 export const auth = betterAuth({
   secret: process.env.BETTER_AUTH_SECRET!,
-  database: drizzleAdapter(
-    db,
-    {
-      schema: {
-        account, session, user, verification
-      },
-      provider: "sqlite",
-    }
-  ),
+  database: drizzleAdapter(db, {
+    schema: {
+      account,
+      session,
+      user,
+      verification,
+    },
+    provider: "sqlite",
+  }),
   user: {
     deleteUser: {
       enabled: true,
       // Optional: beforeDelete, afterDelete callbacks
-    }
+    },
   },
   emailAndPassword: {
     enabled: true,
@@ -40,6 +40,13 @@ export const auth = betterAuth({
             message: "The account already exists. Please login.",
           });
         }
+      } else if (ctx.path === "/sign-in/email") {
+        const users = await db.select().from(user);
+        if (users.length === 0) {
+          throw new APIError("BAD_REQUEST", {
+            message: "The account does not exist. Please register.",
+          });
+        }
       }
     }),
   },
@@ -48,5 +55,5 @@ export const auth = betterAuth({
 export const getServerSession = async () => {
   return auth.api.getSession({
     headers: await headers(),
-  })
-}
+  });
+};
