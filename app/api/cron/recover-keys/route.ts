@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { recoverUnhealthyKeys } from "@/app/actions/api-keys";
+import { recoverUnhealthyKeys } from "@/lib/api-keys";
 
 export async function GET() {
   try {
