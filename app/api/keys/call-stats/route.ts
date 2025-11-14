@@ -5,7 +5,7 @@ import { eq, asc, sql } from "drizzle-orm";
 
 export async function GET() {
   try {
-    const rows = await db
+    const rows = await (db as any)
       .select({
         id: apiKeys.id,
         apiKey: apiKeys.apiKey,
