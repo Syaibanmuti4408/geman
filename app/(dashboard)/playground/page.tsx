@@ -27,6 +27,8 @@ type OpenAIChatCompletion = {
 
 export default function PlaygroundPage() {
   const [format, setFormat] = useState<Format>("openai");
+  const [model, setModel] = useState("gemini-2.0-flash");
+  const [token, setToken] = useState("");
   const [system, setSystem] = useState("");
   const [prompt, setPrompt] = useState("Say hello from the proxy.");
   const [loading, setLoading] = useState(false);
@@ -38,7 +40,10 @@ export default function PlaygroundPage() {
   async function pingProxy() {
     setProxyStatus("checking...");
     try {
-      const res = await fetch("/api/proxy", { method: "GET" });
+      const res = await fetch(
+        `/v1beta/models/${model}:generateContent`,
+        { method: "GET" },
+      );
       const data = await res.json();
       setProxyStatus(`${data.status || "unknown"} (${res.status})`);
     } catch {
@@ -80,11 +85,14 @@ export default function PlaygroundPage() {
 
     try {
       const body = buildPayload(format, system, prompt);
-      const res = await fetch("/api/proxy", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body),
-      });
+      const res = await fetch(
+        `/v1beta/models/${model}:generateContent?key=${process.env.NEXT_PUBLIC_ALLOWED_TOKEN}`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(body),
+        },
+      );
       setStatusCode(res.status);
 
       const data = await res.json();
@@ -108,21 +116,21 @@ export default function PlaygroundPage() {
   const assistantText =
     format === "openai"
       ? (result as OpenAIChatCompletion | null)?.choices?.[0]?.message
-          ?.content || ""
+        ?.content || ""
       : result?.candidates?.[0]?.content?.parts?.[0]?.text || "";
 
   const usageText =
     format === "openai"
       ? (() => {
-          const usage = (result as OpenAIChatCompletion | null)?.usage;
-          if (!usage) return "";
-          return `Tokens: prompt=${usage.prompt_tokens}, completion=${usage.completion_tokens}, total=${usage.total_tokens}`;
-        })()
+        const usage = (result as OpenAIChatCompletion | null)?.usage;
+        if (!usage) return "";
+        return `Tokens: prompt=${usage.prompt_tokens}, completion=${usage.completion_tokens}, total=${usage.total_tokens}`;
+      })()
       : (() => {
-          const u = result?.usageMetadata;
-          if (!u) return "";
-          return `Tokens: prompt=${u.promptTokenCount || 0}, completion=${u.candidatesTokenCount || 0}, total=${u.totalTokenCount || 0}`;
-        })();
+        const u = result?.usageMetadata;
+        if (!u) return "";
+        return `Tokens: prompt=${u.promptTokenCount || 0}, completion=${u.candidatesTokenCount || 0}, total=${u.totalTokenCount || 0}`;
+      })();
 
   return (
     <div className="container mx-auto space-y-6">
@@ -159,6 +167,26 @@ export default function PlaygroundPage() {
                 Status: {proxyStatus}
               </span>
             </div>
+          </div>
+
+          <div className="grid gap-3">
+            <Label htmlFor="model">Model</Label>
+            <Input
+              id="model"
+              placeholder="gemini-2.0-flash"
+              value={model}
+              onChange={(e) => setModel(e.target.value)}
+            />
+          </div>
+
+          <div className="grid gap-3">
+            <Label htmlFor="token">Access Token</Label>
+            <Input
+              id="token"
+              placeholder="Query param 'key' (optional)"
+              value={token}
+              onChange={(e) => setToken(e.target.value)}
+            />
           </div>
 
           <div className="grid gap-3">
